@@ -1,0 +1,23 @@
+[alias]
+    unadd = reset HEAD
+    st = status
+    lg = log --graph --abbrev-commit --pretty=oneline --decorate --color
+    lga = log --graph --abbrev-commit --pretty=oneline --decorate --color --all
+    f = !git ls-files | grep -i
+    slap = blame -w
+
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    ui = true
+
+[core]
+    editor = ~/bin/vim
+
+[push]
+    default = simple
+
+[user]
+	name = Josiah Wolf Oberholtzer
+	email = josiah.oberholtzer@gmail.com
