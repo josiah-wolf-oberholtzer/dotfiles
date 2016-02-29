@@ -1,4 +1,5 @@
 [alias]
+    co = checkout
     unadd = reset HEAD
     st = status
     lg = log --graph --abbrev-commit --pretty=oneline --decorate --color
@@ -13,7 +14,7 @@
     ui = true
 
 [core]
-    editor = ~/bin/vim
+    editor = vim
 
 [push]
     default = simple
@@ -21,3 +22,8 @@
 [user]
 	name = Josiah Wolf Oberholtzer
 	email = josiah.oberholtzer@gmail.com
+
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
