@@ -1,16 +1,30 @@
-" 0. preamble
-" ===========
+" ======
+" vundle
+" ======
 
-autocmd! bufwritepost .vimrc source %
-call pathogen#infect()
-call pathogen#helptags()
+set nocompatible
 filetype off
-filetype plugin on
-syntax on
-let mapleader = ","
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/vundle'
+Plugin 'bling/vim-airline'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'scrooloose/syntastic'
+call vundle#end()
+filetype plugin indent on
 
-" 1. autocommands
-" ===============
+" ========
+" preamble
+" ========
+
+let mapleader = ","
+autocmd! bufwritepost .vimrc source %
+syntax on
+
+" ============
+" autocommands
+" ============
 
 autocmd BufWinEnter *.py silent set foldenable
 autocmd BufWinEnter *.py silent set foldlevel=1
@@ -19,8 +33,9 @@ autocmd BufWinEnter *.py silent set foldminlines=0
 autocmd BufWinEnter *.py silent set foldnestmax=2
 autocmd BufWinEnter *.py silent set nofoldenable
 
-" 2. settings (alphabetical)
-" ==========================
+" ========
+" settings
+" ========
 
 set autoindent
 set backspace=2
@@ -72,33 +87,28 @@ set wildignore+=*.toc
 set wildignore+=*.ttf
 set wildmode=list:longest
 
-" 3. mappings (alphabetical)
-" ==========================
+" ========
+" mappings
+" ========
 
 " comments
+noremap <F2> <Esc>:'a,'bs/\/\///<cr>
+noremap <F3> <Esc>:'a,'bs/%//<cr>
 noremap <F4> <Esc>:'a,'bs/#//<cr>
 noremap <F6> <Esc>:'a,'bs/^/#/<cr>
-vnoremap <F4> :s/#//<cr>
-vnoremap <F6> :s/^/#/<cr>
-
-noremap <F3> <Esc>:'a,'bs/%//<cr>
 noremap <F7> <Esc>:'a,'bs/^/%/<cr>
-vnoremap <F3> :s/%//<cr>
-vnoremap <F7> :s/^/%/<cr>
-
-noremap <F2> <Esc>:'a,'bs/\/\///<cr>
 noremap <F8> <Esc>:'a,'bs/^/\/\//<cr>
 vnoremap <F2> :s/\/\///<cr>
+vnoremap <F3> :s/%//<cr>
+vnoremap <F4> :s/#//<cr>
+vnoremap <F6> :s/^/#/<cr>
+vnoremap <F7> :s/^/%/<cr>
 vnoremap <F8> :s/^/\/\//<cr>
 
 " cursor vertical center
 :nnoremap <leader>zz :let &scrolloff=999-&scrolloff<cr>
 
-" folding
-noremap <leader>zm zMzr
-
 " hjkl navigation only
-" but note that arrow keys always work in paste mode
 map   <Up>     <NOP>
 map   <Down>   <NOP>
 map   <Left>   <NOP>
@@ -116,23 +126,15 @@ noremap <leader>ab :'a,'bsort<cr>
 " remove trailing whitespace
 :nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
-" settings reload & view
-map <leader>v :source ~/.vimrc<cr>
-map <leader>vv :edit ~/.vimrc<cr>
-
 " window navigation
 map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 
-" write & quit
-noremap <leader>w :write<cr>
-noremap <leader>q :quit<cr>
-noremap <leader>wq :wq<cr>
-
-" 4. plugins (alphabetical)
-" " =========================
+" =======
+" plugins
+" =======
 
 " ctrlp (https://github.com/ctrlpvim/ctrlp.vim)
 let g:ctrlp_map = '<c-p>'

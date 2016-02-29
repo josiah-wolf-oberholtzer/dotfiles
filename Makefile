@@ -1,4 +1,4 @@
-all: .ackrc .gitconfig .vimrc flake8
+all: .ackrc .gitconfig .vimrc flake8 vundle
 
 .ackrc:
 	rm -f ~/.ackrc
@@ -13,3 +13,9 @@ all: .ackrc .gitconfig .vimrc flake8
 flake8:
 	mkdir -p ~/.config
 	ln -fs $(abspath ./flake8) ~/.config/flake8
+
+vundle:
+	mkdir -p ~/.vim/bundle
+	rm -Rf ~/.vim/bundle/Vundle.vim
+	git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+	vim +BundleInstall +qall.
