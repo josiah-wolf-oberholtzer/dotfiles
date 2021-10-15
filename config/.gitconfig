@@ -1,29 +1,42 @@
 [alias]
-    co = checkout
-    unadd = reset HEAD
-    st = status
-    lg = log --graph --abbrev-commit --pretty=oneline --decorate --color
-    lga = log --graph --abbrev-commit --pretty=oneline --decorate --color --all
-    f = !git ls-files | grep -i
-    slap = blame -w
+	co = checkout
+	unadd = reset HEAD
+	st = status
+	lg = log --graph --abbrev-commit --pretty=oneline --decorate --color
+	lga = log --graph --abbrev-commit --pretty=oneline --decorate --color --all
+	recent-branches ="!git for-each-ref --sort=-committerdate --count=10 --format='%(refname:short)' refs/heads/"
 
 [color]
-    diff = auto
-    status = auto
-    branch = auto
-    ui = true
+	diff = auto
+	status = auto
+	branch = auto
+	ui = true
 
 [core]
-    editor = vim
+	editor = vim
+    pager = less -F -X
 
 [push]
-    default = simple
+	default = simple
 
 [user]
-	name = Josiah Wolf Oberholtzer
+	name = Josiah Oberholtzer
 	email = josiah.oberholtzer@gmail.com
 
+[credentials]
+	helper = store
+
+[gpg "x509"]
+	program = smimesign
+
+[gpg]
+	format = x509
+
+[pull]
+	ff = only
+
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
 	required = true
